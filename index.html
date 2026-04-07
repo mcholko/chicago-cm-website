@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chicago CM | Commercial Construction Network</title>
+  <meta name="description" content="Chicago's premier networking group for commercial construction professionals — general contractors, architects, subcontractors, owners reps, construction managers, and owners." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #1a1a1a;
+      --white:   #ffffff;
+      --chi-red: #C60C30;
+      --chi-blue:#41B6E6;
+      --dark:    #111111;
+      --gray:    #6b7280;
+      --light:   #f8f9fa;
+      --border:  #e5e7eb;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+
+    /* ── Utility ────────────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+    .tag {
+      display: inline-block;
+      background: var(--chi-red);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: var(--dark);
+    }
+    .section-sub {
+      margin-top: 16px;
+      font-size: 17px;
+      color: var(--gray);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      border: 2px solid transparent;
+    }
+    .btn-primary {
+      background: var(--chi-red);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #a30926; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--white);
+      color: var(--white);
+    }
+    .btn-outline:hover { background: var(--white); color: var(--dark); }
+    .btn-dark {
+      background: var(--dark);
+      color: var(--white);
+    }
+    .btn-dark:hover { background: #333; transform: translateY(-1px); }
+
+    /* ── Navigation ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(17,17,17,.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo img {
+      height: 42px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.75);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: .3s; }
+
+    /* ── Hero ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--dark);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(17,17,17,.85) 0%, rgba(17,17,17,.6) 60%, rgba(17,17,17,.95) 100%),
+        url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80&auto=format') center/cover no-repeat;
+    }
+    /* Chicago flag stripe accents */
+    .hero-stripes {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      display: flex;
+    }
+    .hero-stripes span:nth-child(1) { flex: 1; background: var(--chi-blue); }
+    .hero-stripes span:nth-child(2) { flex: 1; background: var(--white); }
+    .hero-stripes span:nth-child(3) { flex: 1; background: var(--chi-red); }
+    .hero-stripes span:nth-child(4) { flex: 1; background: var(--white); }
+    .hero-stripes span:nth-child(5) { flex: 1; background: var(--chi-blue); }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding-top: 70px;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-line {
+      width: 40px; height: 2px;
+      background: var(--chi-red);
+    }
+    .hero-eyebrow span {
+      color: var(--chi-blue);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -.03em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--chi-red);
+    }
+    .hero-desc {
+      font-size: 18px;
+      color: rgba(255,255,255,.72);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      flex-wrap: wrap;
+    }
+    .stat-item {}
+    .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+    .stat-num span { color: var(--chi-red); }
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+
+    /* ── About ──────────────────────────────────────── */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -24px;
+      left: -24px;
+      background: var(--chi-red);
+      color: var(--white);
+      padding: 24px 28px;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(198,12,48,.3);
+    }
+    .about-badge-num {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.03em;
+    }
+    .about-badge-text {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .85;
+      margin-top: 4px;
+    }
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .feature-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--light);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── Who We Serve ───────────────────────────────── */
+    .members { background: var(--light); }
+    .members-header { text-align: center; margin-bottom: 64px; }
+    .members-header .section-sub { margin: 16px auto 0; }
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .member-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 28px;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--chi-red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+    .member-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+    .member-card:hover::before { transform: scaleX(1); }
+    .member-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    .member-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .member-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ── Benefits ───────────────────────────────────── */
+    .benefits { background: var(--dark); color: var(--white); }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .benefit-row {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .benefit-num {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--chi-red);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding-top: 3px;
+      min-width: 28px;
+    }
+    .benefit-content {}
+    .benefit-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .benefit-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.65;
+    }
+    .benefits-visual {
+      position: relative;
+    }
+    .benefits-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .benefits-flag {
+      position: absolute;
+      top: -20px; right: -20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px;
+      background: rgba(17,17,17,.9);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 4px;
+    }
+    .flag-stripe { width: 60px; height: 4px; border-radius: 2px; }
+    .flag-stars { display: flex; gap: 4px; justify-content: center; }
+    .flag-star { color: var(--chi-red); font-size: 14px; }
+
+    /* ── Events ─────────────────────────────────────── */
+    .events { background: var(--white); }
+    .events-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .event-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: all .25s;
+    }
+    .event-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+    .event-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .event-body { padding: 24px; }
+    .event-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .event-type {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--chi-red);
+    }
+    .event-date-badge {
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    .event-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .event-location {
+      font-size: 13px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 20px;
+    }
+    .event-link {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--chi-red);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap .2s;
+    }
+    .event-link:hover { gap: 9px; }
+
+    /* ── Sponsor / Partners strip ───────────────────── */
+    .partners { background: var(--light); padding: 48px 0; border-top: 1px solid var(--border); }
+    .partners-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+    .partners-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+    .partner-placeholder {
+      height: 36px;
+      background: var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      color: var(--gray);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    /* ── Join / CTA ─────────────────────────────────── */
+    .cta-section {
+      background: var(--chi-red);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      right: -120px; top: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      left: -80px; bottom: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.1);
+    }
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .cta-text h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+    }
+    .cta-text p {
+      font-size: 16px;
+      color: rgba(255,255,255,.8);
+      margin-top: 12px;
+    }
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cta-input {
+      padding: 14px 20px;
+      border-radius: 4px;
+      border: none;
+      font-size: 15px;
+      font-family: inherit;
+      min-width: 260px;
+      outline: none;
+    }
+    .cta-input::placeholder { color: #9ca3af; }
+    .btn-white {
+      background: var(--white);
+      color: var(--chi-red);
+      border: none;
+    }
+    .btn-white:hover { background: #f1f1f1; transform: translateY(-1px); }
+
+    /* ── Member Board ───────────────────────────── */
+    .board { background: var(--light); }
+    .board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .board-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--dark);
+      color: var(--white);
+      border-color: var(--dark);
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+    .board-lock-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(248,249,250,0) 0%, rgba(248,249,250,.6) 30%, rgba(248,249,250,1) 55%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 40px;
+    }
+    .lock-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.1);
+      max-width: 400px;
+      width: 90%;
+    }
+    .lock-icon { font-size: 36px; margin-bottom: 12px; }
+    .lock-box h3 { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 8px; letter-spacing: -.02em; }
+    .lock-box p { font-size: 14px; color: var(--gray); margin-bottom: 20px; line-height: 1.6; }
+    .lock-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .post-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      transition: all .25s;
+    }
+    .post-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+    .post-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .post-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--dark);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; flex-shrink: 0;
+    }
+    .post-author-name { font-size: 14px; font-weight: 700; color: var(--dark); line-height: 1.2; }
+    .post-author-meta { font-size: 12px; color: var(--gray); }
+    .post-badge {
+      margin-left: auto;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 12px; flex-shrink: 0;
+    }
+    .badge-referral { background: #fef3c7; color: #92400e; }
+    .badge-sub      { background: #dbeafe; color: #1e40af; }
+    .badge-looking  { background: #d1fae5; color: #065f46; }
+    .badge-other    { background: #f3e8ff; color: #6b21a8; }
+    .post-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.3; }
+    .post-desc { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+    .post-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .post-date { font-size: 11px; color: #9ca3af; }
+    .post-respond {
+      font-size: 12px; font-weight: 700; color: var(--chi-red);
+      cursor: pointer; background: none; border: none; font-family: inherit; transition: opacity .2s;
+    }
+    .post-respond:hover { opacity: .7; }
+    .post-card.blurred { filter: blur(5px); pointer-events: none; user-select: none; }
+    /* ── Modals ─────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 200; display: none;
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 10px; padding: 40px;
+      max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 20px; font-size: 24px;
+      cursor: pointer; background: none; border: none; color: var(--gray); line-height: 1;
+    }
+    .modal h3 { font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 6px; letter-spacing: -.02em; }
+    .modal-sub { font-size: 14px; color: var(--gray); margin-bottom: 28px; }
+    /* ── Member Bar ─────────────────────────────── */
+    .member-bar {
+      background: var(--dark); color: var(--white);
+      padding: 10px 20px; display: none;
+      align-items: center; justify-content: space-between;
+      font-size: 13px; gap: 12px; flex-wrap: wrap;
+    }
+    .member-bar.visible { display: flex; }
+    .member-bar-name { font-weight: 700; }
+    .member-bar-right { display: flex; gap: 12px; align-items: center; }
+    .member-bar-post {
+      background: var(--chi-red); color: var(--white); border: none;
+      padding: 6px 16px; border-radius: 4px; font-size: 12px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+    }
+    .member-bar-signout {
+      color: rgba(255,255,255,.5); font-size: 12px; cursor: pointer;
+      background: none; border: none; font-family: inherit;
+    }
+    .member-bar-signout:hover { color: var(--white); }
+    @media (max-width: 768px) { .board-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ── Contact ────────────────────────────────────── */
+    .contact { background: var(--white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info { }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-top: 32px;
+    }
+    .contact-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--light);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .contact-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    .contact-form {
+      background: var(--light);
+      border-radius: 8px;
+      padding: 40px;
+    }
+    .form-row { margin-bottom: 20px; }
+    .form-row label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--dark);
+      background: var(--white);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus { border-color: var(--chi-red); }
+    .form-row textarea { resize: vertical; min-height: 110px; }
+    .form-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand img {
+      height: 44px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: 16px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+    }
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,.65);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,.35); }
+    .footer-flag {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+    .ff-stripe { width: 18px; height: 3px; border-radius: 1px; }
+    .ff-star { color: var(--chi-red); font-size: 10px; }
+    .social-links { display: flex; gap: 14px; }
+    .social-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.08);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: rgba(255,255,255,.6);
+      transition: all .2s;
+    }
+    .social-link:hover { background: var(--chi-red); color: var(--white); }
+
+    /* ── Mobile nav overlay ─────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -.02em;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 22px; right: 24px;
+      font-size: 28px;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .about-grid, .benefits-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { order: -1; }
+      .about-badge { bottom: 16px; left: 16px; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .members-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; }
+      .form-cols { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="Chicago CM" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+      <span style="display:none; font-size:20px; font-weight:900; color:#fff; letter-spacing:-.02em;">CHICAGO <span style="color:#C60C30">CM</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#members">Who We Serve</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#board">Member Board</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary" style="padding:10px 22px; font-size:13px;">Join Network</a>
+    </div>
+    <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ──────────────────────────────────────── -->
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">&times;</button>
+  <a href="#about"    onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#members"  onclick="document.querySelector('.mobile-menu').classList.remove('open')">Who We Serve</a>
+  <a href="#benefits" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Benefits</a>
+  <a href="#events"   onclick="document.querySelector('.mobile-menu').classList.remove('open')">Events</a>
+  <a href="#contact"  onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
+  <a href="#contact" class="btn btn-primary" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Join Network</a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Chicago's Commercial Construction Network</span>
+      </div>
+      <h1>Build Better.<br/>Connect <em>Smarter.</em></h1>
+      <p class="hero-desc">
+        Chicago CM brings together the city's top commercial construction professionals — from general contractors and architects to owners and subcontractors — to network, collaborate, and grow.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Join the Network</a>
+        <a href="#events"  class="btn btn-outline">Upcoming Events</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">500<span>+</span></div>
+          <div class="stat-label">Members</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">20<span>+</span></div>
+          <div class="stat-label">Events / Year</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$2<span>B+</span></div>
+          <div class="stat-label">In Active Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-label">Years Strong</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stripes">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <img
+          class="about-img"
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80&auto=format"
+          alt="Chicago construction professionals networking"
+        />
+        <div class="about-badge">
+          <div class="about-badge-num">Est.<br/>2014</div>
+          <div class="about-badge-text">Chicago CM</div>
+        </div>
+      </div>
+      <div class="about-copy">
+        <div class="tag">Who We Are</div>
+        <h2 class="section-title">Chicago's Premier Construction Professional Network</h2>
+        <p class="section-sub">
+          Chicago CM is a dedicated networking community for commercial construction professionals across the Chicagoland area. We connect the people who build this city — creating relationships that drive projects forward.
+        </p>
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon">🤝</div>
+            <div>
+              <div class="feature-title">Genuine Connections</div>
+              <div class="feature-desc">Curated events designed to foster real professional relationships, not just card exchanges.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📍</div>
+            <div>
+              <div class="feature-title">Chicago-Focused</div>
+              <div class="feature-desc">100% focused on the Chicagoland commercial market — the people, projects, and opportunities that matter here.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏗️</div>
+            <div>
+              <div class="feature-title">Industry-Specific</div>
+              <div class="feature-desc">Not a general business network. Every member works in or supports commercial construction.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO WE SERVE ────────────────────────────────────── -->
+<section class="members section" id="members">
+  <div class="container">
+    <div class="members-header">
+      <div class="tag">Membership</div>
+      <h2 class="section-title">Built for the Entire Construction Ecosystem</h2>
+      <p class="section-sub">Chicago CM is open to all commercial construction professionals. If you build Chicago, you belong here.</p>
+    </div>
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="member-icon">🏢</div>
+        <div class="member-title">General Contractors</div>
+        <div class="member-desc">Connect with owners, design teams, and subcontractor partners. Expand your bid list and build the relationships that win work.</div>
+      </div>
+      <div class="member-card">
+        <div class="member-icon">📐</div>
+        <div class="member-title">Architects & Designers</div>
+        <div class="member-desc">Meet the contractors and owners who bring your designs to life. Strengthen partnerships that make projects run smoothly.</div>
+      </div>
+      <div class="member-card">
+        <div class="member-icon">🔧</div>
+        <div class="member-title">Subcontractors</div>
+        <div class="member-desc">Get in front of the GCs and CMs who are always looking for reliable trade partners. Be top of mind when bids go out.</div>
+      </div>
+      <div class="member-card">
+        <div class="member-icon">📋</div>
+        <div class="member-title">Owners Representatives</div>
+        <div class="member-desc">Vet and connect with contractors, consultants, and vendors who can deliver for your clients.</div>
+      </div>
+      <div class="member-card">
+        <div class="member-icon">📊</div>
+        <div class="member-title">Construction Managers</div>
+        <div class="member-desc">Build your bench of trusted partners. Connect with owners, consultants, and trade contractors across every sector.</div>
+      </div>
+      <div class="member-card">
+        <div class="member-icon">🏦</div>
+        <div class="member-title">Owners & Developers</div>
+        <div class="member-desc">Find vetted, trusted construction partners and stay connected to market trends in Chicago's commercial real estate landscape.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFITS ────────────────────────────────────────── -->
+<section class="benefits section" id="benefits">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefits-copy">
+        <div class="tag">Why Join</div>
+        <h2 class="section-title" style="color:var(--white);">Real Value for Real Professionals</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.6);">
+          Chicago CM membership puts you in the room with the decision-makers, project leads, and trade partners shaping Chicago's built environment.
+        </p>
+        <div class="benefits-list">
+          <div class="benefit-row">
+            <div class="benefit-num">01</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Monthly Networking Events</div>
+              <div class="benefit-desc">Structured and casual events at Chicago's best venues — happy hours, project tours, panel discussions, and more.</div>
+            </div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-num">02</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Member Directory Access</div>
+              <div class="benefit-desc">A curated, searchable directory of Chicago CM members organized by company type, specialty, and service area.</div>
+            </div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-num">03</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Job & Project Leads</div>
+              <div class="benefit-desc">Members share opportunities, RFPs, and referrals within the network — business development built in.</div>
+            </div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-num">04</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Industry Education</div>
+              <div class="benefit-desc">Expert panels, market updates, and professional development sessions relevant to Chicago's commercial market.</div>
+            </div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-num">05</div>
+            <div class="benefit-content">
+              <div class="benefit-title">Brand Visibility</div>
+              <div class="benefit-desc">Sponsorship and speaking opportunities to position your firm in front of Chicago's construction community.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="benefits-visual">
+        <img
+          class="benefits-img"
+          src="https://images.unsplash.com/photo-1606836576983-8b458e75221d?w=900&q=80&auto=format"
+          alt="Construction professionals networking event"
+        />
+        <div class="benefits-flag">
+          <div class="flag-stripe" style="background:var(--chi-blue)"></div>
+          <div class="flag-stars">
+            <span class="flag-star">★</span>
+            <span class="flag-star">★</span>
+            <span class="flag-star">★</span>
+            <span class="flag-star">★</span>
+          </div>
+          <div class="flag-stripe" style="background:var(--chi-blue)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EVENTS ──────────────────────────────────────────── -->
+<section class="events section" id="events">
+  <div class="container">
+    <div class="events-header">
+      <div>
+        <div class="tag">Events</div>
+        <h2 class="section-title">Upcoming Events</h2>
+      </div>
+      <a href="#contact" class="btn btn-dark">View All Events →</a>
+    </div>
+    <div class="events-grid">
+      <div class="event-card">
+        <img
+          class="event-img"
+          src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80&auto=format"
+          alt="Networking happy hour event"
+        />
+        <div class="event-body">
+          <div class="event-meta">
+            <span class="event-type">Happy Hour</span>
+            <span style="color:var(--border);">|</span>
+            <span class="event-date-badge">April 24, 2026</span>
+          </div>
+          <div class="event-title">Spring Kickoff Networking Happy Hour</div>
+          <div class="event-location">📍 The Gwen Hotel — River North, Chicago</div>
+          <a href="#contact" class="event-link">Register Now →</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <img
+          class="event-img"
+          src="https://images.unsplash.com/photo-1560439514-4e9645039924?w=800&q=80&auto=format"
+          alt="Panel discussion event"
+        />
+        <div class="event-body">
+          <div class="event-meta">
+            <span class="event-type">Panel Discussion</span>
+            <span style="color:var(--border);">|</span>
+            <span class="event-date-badge">May 15, 2026</span>
+          </div>
+          <div class="event-title">Chicago Market Outlook: Q2 Construction Trends</div>
+          <div class="event-location">📍 Merchandise Mart — Chicago</div>
+          <a href="#contact" class="event-link">Register Now →</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <img
+          class="event-img"
+          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80&auto=format"
+          alt="Project tour event"
+        />
+        <div class="event-body">
+          <div class="event-meta">
+            <span class="event-type">Project Tour</span>
+            <span style="color:var(--border);">|</span>
+            <span class="event-date-badge">June 10, 2026</span>
+          </div>
+          <div class="event-title">Member Project Tour: 78 Development Site</div>
+          <div class="event-location">📍 The 78 — South Loop, Chicago</div>
+          <a href="#contact" class="event-link">Register Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEMBER BAR (shows when logged in) ───────────────── -->
+<div class="member-bar" id="memberBar">
+  <span>👋 Welcome back, <span class="member-bar-name" id="memberBarName"></span> — <span id="memberBarCompany" style="opacity:.6;font-weight:400;"></span></span>
+  <div class="member-bar-right">
+    <button class="member-bar-post" onclick="openPostModal()">+ Post a Want or Need</button>
+    <button class="member-bar-signout" onclick="signOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ── MEMBER BOARD ────────────────────────────────────── -->
+<section class="board section" id="board">
+  <div class="container">
+    <div class="board-header">
+      <div>
+        <div class="tag">Member Board</div>
+        <h2 class="section-title">Wants &amp; Needs</h2>
+        <p class="section-sub">Members post what they're looking for — referrals, subcontractors, consultants, and more. Sign up free to access and post.</p>
+      </div>
+      <button class="btn btn-primary" id="boardCTABtn" onclick="openSignupModal()">Sign Up Free to Access</button>
+    </div>
+    <div class="board-filters">
+      <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
+      <button class="filter-btn" onclick="filterPosts('referral', this)">Referral Needed</button>
+      <button class="filter-btn" onclick="filterPosts('sub', this)">Subcontractor Needed</button>
+      <button class="filter-btn" onclick="filterPosts('looking', this)">Looking for Work</button>
+      <button class="filter-btn" onclick="filterPosts('other', this)">Other</button>
+    </div>
+    <div class="board-grid" id="boardGrid">
+      <!-- Posts injected by JS -->
+      <div class="board-lock-overlay" id="boardLock">
+        <div class="lock-box">
+          <div class="lock-icon">🔒</div>
+          <h3>Members Only</h3>
+          <p>Sign up free to view all posts, respond to members, and post your own wants and needs.</p>
+          <div class="lock-actions">
+            <button class="btn btn-primary" onclick="openSignupModal()">Sign Up Free</button>
+            <button class="btn btn-dark" onclick="openLoginModal()">Log In</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SIGNUP MODAL ────────────────────────────────────── -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signupModal')">&times;</button>
+    <h3>Join Chicago CM — Free</h3>
+    <p class="modal-sub">Create your free member account to access the full board.</p>
+    <div class="form-cols">
+      <div class="form-row"><label>First Name</label><input type="text" id="su-first" placeholder="Jane" /></div>
+      <div class="form-row"><label>Last Name</label><input type="text" id="su-last" placeholder="Smith" /></div>
+    </div>
+    <div class="form-row"><label>Work Email</label><input type="email" id="su-email" placeholder="jane@yourfirm.com" /></div>
+    <div class="form-row"><label>Company</label><input type="text" id="su-company" placeholder="Your firm" /></div>
+    <div class="form-row">
+      <label>Role</label>
+      <select id="su-role">
+        <option value="">Select your role...</option>
+        <option>General Contractor</option>
+        <option>Architect / Designer</option>
+        <option>Subcontractor</option>
+        <option>Owner Representative</option>
+        <option>Construction Manager</option>
+        <option>Owner / Developer</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div id="su-error" style="color:var(--chi-red);font-size:13px;margin-bottom:12px;display:none;"></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleSignup()">Create Free Account</button>
+    <p style="text-align:center;font-size:13px;color:var(--gray);margin-top:16px;">Already a member? <a href="#" onclick="closeModal('signupModal');openLoginModal();" style="color:var(--chi-red);font-weight:700;">Log In</a></p>
+  </div>
+</div>
+
+<!-- ── LOGIN MODAL ─────────────────────────────────────── -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+    <h3>Welcome Back</h3>
+    <p class="modal-sub">Log in with your email to access the member board.</p>
+    <div class="form-row"><label>Work Email</label><input type="email" id="li-email" placeholder="jane@yourfirm.com" /></div>
+    <div id="li-error" style="color:var(--chi-red);font-size:13px;margin-bottom:12px;display:none;"></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleLogin()">Log In</button>
+    <p style="text-align:center;font-size:13px;color:var(--gray);margin-top:16px;">Not a member yet? <a href="#" onclick="closeModal('loginModal');openSignupModal();" style="color:var(--chi-red);font-weight:700;">Sign Up Free</a></p>
+  </div>
+</div>
+
+<!-- ── NEW POST MODAL ──────────────────────────────────── -->
+<div class="modal-overlay" id="postModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('postModal')">&times;</button>
+    <h3>Post a Want or Need</h3>
+    <p class="modal-sub">Let the network know what you're looking for.</p>
+    <div class="form-row">
+      <label>Category</label>
+      <select id="post-type">
+        <option value="referral">Referral Needed</option>
+        <option value="sub">Subcontractor Needed</option>
+        <option value="looking">Looking for Work</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Headline</label><input type="text" id="post-title" placeholder='e.g. "Looking for a licensed surveyor in the Loop"' maxlength="80" /></div>
+    <div class="form-row">
+      <label>Details</label>
+      <textarea id="post-desc" placeholder="Describe what you need — project type, location, timeline, budget range, etc." style="min-height:100px;"></textarea>
+    </div>
+    <div id="post-error" style="color:var(--chi-red);font-size:13px;margin-bottom:12px;display:none;"></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleNewPost()">Post to Board</button>
+  </div>
+</div>
+
+<!-- ── RESPOND MODAL ───────────────────────────────────── -->
+<div class="modal-overlay" id="respondModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('respondModal')">&times;</button>
+    <h3>Respond to Post</h3>
+    <p class="modal-sub" id="respondModalSub"></p>
+    <div class="form-row"><label>Your Message</label><textarea id="respond-msg" placeholder="Introduce yourself and how you can help..." style="min-height:100px;"></textarea></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleRespond()">Send Response</button>
+  </div>
+</div>
+
+<!-- ── PARTNERS ────────────────────────────────────────── -->
+<section class="partners">
+  <div class="container">
+    <p class="partners-label">Network Sponsors &amp; Partners</p>
+    <div class="partners-logos">
+      <div class="partner-placeholder">Your Company Here</div>
+      <div class="partner-placeholder">Sponsor Slot</div>
+      <div class="partner-placeholder">Partner Firm</div>
+      <div class="partner-placeholder">Supporting Sponsor</div>
+      <div class="partner-placeholder">Industry Partner</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────── -->
+<section class="cta-section" id="join">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Ready to Expand Your<br/>Network in Chicago?</h2>
+        <p>Drop your email and we'll reach out with membership details.</p>
+      </div>
+      <div class="cta-form">
+        <input class="cta-input" type="email" placeholder="Enter your work email" />
+        <button class="btn btn-white" onclick="handleEmailSignup(this)">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────── -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="tag">Get Involved</div>
+        <h2 class="section-title">Join Chicago CM</h2>
+        <p class="section-sub">
+          Whether you're looking to join as a member, sponsor an event, or learn more about the network — we'd love to connect.
+        </p>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Chicago, Illinois</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">info@chicagocm.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-label">Social</div>
+            <div class="contact-value">@ChicagoCM</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:28px; letter-spacing:-.02em;">Request Membership Info</h3>
+        <div class="form-cols">
+          <div class="form-row">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane" />
+          </div>
+          <div class="form-row">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Work Email</label>
+          <input type="email" placeholder="jane@yourfirm.com" />
+        </div>
+        <div class="form-row">
+          <label>Company</label>
+          <input type="text" placeholder="Your firm name" />
+        </div>
+        <div class="form-row">
+          <label>Role</label>
+          <select>
+            <option value="">Select your role...</option>
+            <option>General Contractor</option>
+            <option>Architect / Designer</option>
+            <option>Subcontractor</option>
+            <option>Owner Representative</option>
+            <option>Construction Manager</option>
+            <option>Owner / Developer</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Message (optional)</label>
+          <textarea placeholder="Tell us a bit about yourself or your firm..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="handleFormSubmit(this)">
+          Submit Request
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Chicago CM" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span style="display:none; font-size:22px; font-weight:900; color:#fff; letter-spacing:-.03em; margin-bottom:12px; display:block;">CHICAGO <span style="color:#C60C30">CM</span></span>
+        <p>Chicago's commercial construction networking community — connecting the professionals who build this city.</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">𝕏</a>
+          <a href="#" class="social-link">f</a>
+          <a href="#" class="social-link">@</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Network</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Chicago CM</a></li>
+          <li><a href="#members">Who We Serve</a></li>
+          <li><a href="#benefits">Membership Benefits</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#contact">Join the Network</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Members</div>
+        <ul class="footer-links">
+          <li><a href="#members">General Contractors</a></li>
+          <li><a href="#members">Architects</a></li>
+          <li><a href="#members">Subcontractors</a></li>
+          <li><a href="#members">Owners Reps</a></li>
+          <li><a href="#members">Construction Managers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@chicagocm.com">info@chicagocm.com</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#contact">Sponsorship Inquiries</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Chicago CM. All rights reserved.</p>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="footer-flag">
+          <div class="ff-stripe" style="background:var(--chi-blue)"></div>
+          <div style="display:flex; gap:2px; margin: 0 4px;">
+            <span class="ff-star">★</span>
+            <span class="ff-star">★</span>
+            <span class="ff-star">★</span>
+            <span class="ff-star">★</span>
+          </div>
+          <div class="ff-stripe" style="background:var(--chi-blue)"></div>
+        </div>
+        <p style="color:rgba(255,255,255,.35);">Proudly Chicago</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ── Supabase Setup ──────────────────────────────────────
+  const { createClient } = supabase;
+  const sb = createClient(
+    'https://qeoukxzdewyqjryifjbm.supabase.co',
+    'sb_publishable_Sm11nLUh6X-lodSirGmy3g_JerxcjVY'
+  );
+
+  // ── Member Board Logic ──────────────────────────────────
+  const AVATAR_COLORS = ['#C60C30','#1e40af','#065f46','#6b21a8','#92400e','#111111','#0369a1'];
+
+  const SAMPLE_POSTS = [
+    { id:'s1', name:'Mike T.', company:'Meridian GC', role:'General Contractor', type:'referral',
+      title:'Looking for a licensed land surveyor — Loop/West Loop', initials:'MT',
+      description:'Working on a 12-story mixed-use project in the West Loop. Need a reliable surveyor for boundary and topographic work. Project starts Q3. Ideally someone with downtown Chicago experience.', post_date:'Apr 3, 2026', color:'#C60C30' },
+    { id:'s2', name:'Sarah K.', company:'Kovacs Architecture', role:'Architect', type:'referral',
+      title:'Referral needed: MEP engineer for adaptive reuse project', initials:'SK',
+      description:'Looking for a strong MEP firm for a warehouse-to-office conversion in Pilsen. ~60,000 SF. Design phase kicking off in May. Bonus if they have experience with historic buildings.', post_date:'Apr 2, 2026', color:'#1e40af' },
+    { id:'s3', name:'James R.', company:'Ridge Concrete', role:'Subcontractor', type:'looking',
+      title:'Concrete subcontractor available — Q3 openings', initials:'JR',
+      description:'Union concrete contractor with 20 years in commercial. Currently have capacity for Q3 starts. Specializing in foundations, flatwork, and structural concrete. Happy to bid on any size project.', post_date:'Apr 1, 2026', color:'#065f46' },
+    { id:'s4', name:'Diane M.', company:'DMG Owners Rep', role:'Owner Representative', type:'sub',
+      title:'Need a trusted drywall sub for a $4M office fit-out', initials:'DM',
+      description:'Tenant improvement project in River North, approx 18,000 SF. Looking for an experienced drywall/framing sub. Work starts late May, 10-week schedule. Please reach out with references.', post_date:'Mar 31, 2026', color:'#92400e' },
+    { id:'s5', name:'Tom B.', company:'Lakeshore CM', role:'Construction Manager', type:'referral',
+      title:'Referral: Environmental consultant for due diligence', initials:'TB',
+      description:'Client needs Phase I & II ESA on a South Side industrial site. Anyone work with a firm they trust for this type of work? Timeline is tight — need to kick off within 2 weeks.', post_date:'Mar 30, 2026', color:'#6b21a8' },
+    { id:'s6', name:'Lisa C.', company:'Centerline Development', role:'Owner / Developer', type:'sub',
+      title:'Seeking electrical sub for ground-up retail — Wicker Park', initials:'LC',
+      description:'4,500 SF ground-up retail/restaurant space. Looking for a licensed electrical contractor comfortable with commercial kitchen rough-in. Permit expected in 6 weeks.', post_date:'Mar 29, 2026', color:'#0369a1' },
+  ];
+
+  let currentFilter = 'all';
+  let allPosts = [];
+  let currentUser = null;
+  let respondingToPost = null;
+
+  function showToast(msg, color) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `position:fixed;bottom:24px;right:24px;background:${color||'var(--dark)'};color:#fff;padding:14px 24px;border-radius:6px;font-size:14px;font-weight:600;z-index:300;box-shadow:0 8px 30px rgba(0,0,0,.2);`;
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+
+  async function initBoard() {
+    currentUser = JSON.parse(sessionStorage.getItem('ccm_user') || 'null');
+    await loadPosts();
+    if (currentUser) showMemberState();
+  }
+
+  async function loadPosts() {
+    const { data, error } = await sb.from('posts').select('*').order('created_at', { ascending: false });
+    const livePosts = (data || []).map(p => ({ ...p, color: p.color || AVATAR_COLORS[p.id % AVATAR_COLORS.length] }));
+    allPosts = [...livePosts, ...SAMPLE_POSTS];
+    renderBoard();
+  }
+
+  function renderBoard() {
+    const grid = document.getElementById('boardGrid');
+    const lock = document.getElementById('boardLock');
+    const filtered = currentFilter === 'all' ? allPosts : allPosts.filter(p => p.type === currentFilter);
+
+    grid.querySelectorAll('.post-card').forEach(c => c.remove());
+
+    filtered.forEach((post, i) => {
+      const card = document.createElement('div');
+      card.className = 'post-card' + (!currentUser && i >= 2 ? ' blurred' : '');
+      card.dataset.type = post.type;
+      const badgeClass = { referral:'badge-referral', sub:'badge-sub', looking:'badge-looking', other:'badge-other' }[post.type] || 'badge-other';
+      const badgeLabel = { referral:'Referral', sub:'Subcontractor', looking:'Looking for Work', other:'Other' }[post.type] || 'Other';
+      const safeTitle = (post.title||'').replace(/'/g,"\\'");
+      card.innerHTML = `
+        <div class="post-card-header">
+          <div class="post-avatar" style="background:${post.color||'#111'}">${post.initials||'?'}</div>
+          <div>
+            <div class="post-author-name">${post.name||''}</div>
+            <div class="post-author-meta">${post.role||''} · ${post.company||''}</div>
+          </div>
+          <span class="post-badge ${badgeClass}">${badgeLabel}</span>
+        </div>
+        <div class="post-title">${post.title||''}</div>
+        <div class="post-desc">${post.description||''}</div>
+        <div class="post-footer">
+          <span class="post-date">${post.post_date||''}</span>
+          ${currentUser ? `<button class="post-respond" onclick="openRespondModal('${post.id}','${safeTitle}')">Respond →</button>` : ''}
+        </div>`;
+      grid.insertBefore(card, lock);
+    });
+
+    if (filtered.length === 0) {
+      const empty = document.createElement('div');
+      empty.style.cssText = 'grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);font-size:15px;';
+      empty.textContent = 'No posts in this category yet. Be the first to post!';
+      grid.insertBefore(empty, lock);
+    }
+    lock.style.display = currentUser ? 'none' : 'flex';
+  }
+
+  function filterPosts(type, btn) {
+    currentFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderBoard();
+  }
+
+  function showMemberState() {
+    document.getElementById('memberBar').classList.add('visible');
+    document.getElementById('memberBarName').textContent = currentUser.first + ' ' + currentUser.last;
+    document.getElementById('memberBarCompany').textContent = currentUser.company;
+    document.getElementById('boardCTABtn').textContent = '+ Post a Want or Need';
+    document.getElementById('boardCTABtn').onclick = openPostModal;
+  }
+
+  // ── Auth ──
+  function openSignupModal() { document.getElementById('signupModal').classList.add('open'); }
+  function openLoginModal()  { document.getElementById('loginModal').classList.add('open'); }
+  function openPostModal()   { if (!currentUser) { openSignupModal(); return; } document.getElementById('postModal').classList.add('open'); }
+  function closeModal(id)    { document.getElementById(id).classList.remove('open'); }
+
+  async function handleSignup() {
+    const first   = document.getElementById('su-first').value.trim();
+    const last    = document.getElementById('su-last').value.trim();
+    const email   = document.getElementById('su-email').value.trim();
+    const company = document.getElementById('su-company').value.trim();
+    const role    = document.getElementById('su-role').value;
+    const err     = document.getElementById('su-error');
+    err.style.display = 'none';
+    if (!first || !last || !email || !company || !role) {
+      err.textContent = 'Please fill in all fields.'; err.style.display = 'block'; return;
+    }
+    if (!email.includes('@')) {
+      err.textContent = 'Please enter a valid email.'; err.style.display = 'block'; return;
+    }
+    // Check if email exists
+    const { data: existing } = await sb.from('members').select('email').eq('email', email).maybeSingle();
+    if (existing) {
+      err.textContent = 'An account with this email already exists. Please log in.'; err.style.display = 'block'; return;
+    }
+    // Count members to pick avatar color
+    const { count } = await sb.from('members').select('*', { count:'exact', head:true });
+    const color = AVATAR_COLORS[(count || 0) % AVATAR_COLORS.length];
+    const initials = (first[0] + last[0]).toUpperCase();
+    const { error } = await sb.from('members').insert({ first, last, email, company, role, initials, color });
+    if (error) { err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block'; return; }
+    const user = { first, last, email, company, role, initials, color };
+    sessionStorage.setItem('ccm_user', JSON.stringify(user));
+    currentUser = user;
+    closeModal('signupModal');
+    showMemberState();
+    await loadPosts();
+    document.getElementById('board').scrollIntoView({ behavior:'smooth' });
+    showToast('Welcome to Chicago CM, ' + first + '!', '#065f46');
+  }
+
+  async function handleLogin() {
+    const email = document.getElementById('li-email').value.trim();
+    const err   = document.getElementById('li-error');
+    err.style.display = 'none';
+    const { data: user } = await sb.from('members').select('*').eq('email', email).maybeSingle();
+    if (!user) {
+      err.textContent = 'No account found with that email. Please sign up.'; err.style.display = 'block'; return;
+    }
+    sessionStorage.setItem('ccm_user', JSON.stringify(user));
+    currentUser = user;
+    closeModal('loginModal');
+    showMemberState();
+    await loadPosts();
+    document.getElementById('board').scrollIntoView({ behavior:'smooth' });
+    showToast('Welcome back, ' + user.first + '!', '#065f46');
+  }
+
+  function signOut() {
+    sessionStorage.removeItem('ccm_user');
+    currentUser = null;
+    document.getElementById('memberBar').classList.remove('visible');
+    document.getElementById('boardCTABtn').textContent = 'Sign Up Free to Access';
+    document.getElementById('boardCTABtn').onclick = openSignupModal;
+    renderBoard();
+  }
+
+  async function handleNewPost() {
+    const type  = document.getElementById('post-type').value;
+    const title = document.getElementById('post-title').value.trim();
+    const desc  = document.getElementById('post-desc').value.trim();
+    const err   = document.getElementById('post-error');
+    err.style.display = 'none';
+    if (!title || !desc) { err.textContent = 'Please fill in all fields.'; err.style.display = 'block'; return; }
+    const post = {
+      name: currentUser.first + ' ' + currentUser.last[0] + '.',
+      company: currentUser.company, role: currentUser.role,
+      type, title, description: desc,
+      initials: currentUser.initials, color: currentUser.color,
+      post_date: new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' })
+    };
+    const { error } = await sb.from('posts').insert(post);
+    if (error) { err.textContent = 'Could not post. Please try again.'; err.style.display = 'block'; return; }
+    closeModal('postModal');
+    document.getElementById('post-title').value = '';
+    document.getElementById('post-desc').value = '';
+    currentFilter = 'all';
+    document.querySelectorAll('.filter-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+    await loadPosts();
+    document.getElementById('board').scrollIntoView({ behavior:'smooth' });
+    showToast('✓ Post published to the board!', '#065f46');
+  }
+
+  function openRespondModal(postId, postTitle) {
+    respondingToPost = postId;
+    document.getElementById('respondModalSub').textContent = '"' + postTitle + '"';
+    document.getElementById('respondModal').classList.add('open');
+  }
+
+  function handleRespond() {
+    const msg = document.getElementById('respond-msg').value.trim();
+    if (!msg) return;
+    closeModal('respondModal');
+    document.getElementById('respond-msg').value = '';
+    showToast('✓ Response sent!', '#065f46');
+  }
+
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+  });
+
+  initBoard();
+
+  // ── Smooth active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? '#ffffff'
+        : 'rgba(255,255,255,.75)';
+    });
+  });
+
+  // Scroll-in animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.member-card, .event-card, .benefit-row, .feature-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+
+  // Form handlers (placeholder — replace with your backend)
+  function handleFormSubmit(btn) {
+    btn.textContent = '✓ Request Sent!';
+    btn.style.background = '#16a34a';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Submit Request';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+
+  function handleEmailSignup(btn) {
+    const input = btn.previousElementSibling;
+    if (!input.value || !input.value.includes('@')) {
+      input.style.border = '2px solid #fca5a5';
+      return;
+    }
+    btn.textContent = '✓ Got it!';
+    btn.disabled = true;
+    input.value = '';
+    setTimeout(() => {
+      btn.textContent = 'Get Started';
+      btn.disabled = false;
+    }, 3000);
+  }
+</script>
+</body>
+</html>
