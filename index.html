@@ -616,9 +616,9 @@
       border-color: var(--dark);
     }
     .board-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       position: relative;
     }
     .board-lock-overlay {
@@ -648,12 +648,12 @@
     .lock-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
     .post-card {
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 22px;
-      transition: all .25s;
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      transition: background .2s;
     }
-    .post-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+    .post-card:first-child { border-top: 1px solid var(--border); }
+    .post-card:hover { background: var(--light); padding-left: 12px; padding-right: 12px; margin: 0 -12px; }
     .post-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
     .post-avatar {
       width: 40px; height: 40px;
@@ -725,8 +725,7 @@
       background: none; border: none; font-family: inherit;
     }
     .member-bar-signout:hover { color: var(--white); }
-    @media (max-width: 768px) { .board-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 1024px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
+
 
     /* ── Contact ────────────────────────────────────── */
     .contact { background: var(--white); }
@@ -935,7 +934,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-primary" style="padding:10px 22px; font-size:13px;">Join Network</a>
+      <a href="#" class="btn btn-primary" style="padding:10px 22px; font-size:13px;" onclick="event.preventDefault();openSignupModal()">Join Network</a>
     </div>
     <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
       <span></span><span></span><span></span>
@@ -951,7 +950,7 @@
   <a href="#benefits" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Benefits</a>
   <a href="#events"   onclick="document.querySelector('.mobile-menu').classList.remove('open')">Events</a>
   <a href="#contact"  onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
-  <a href="#contact" class="btn btn-primary" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Join Network</a>
+  <a href="#" class="btn btn-primary" onclick="document.querySelector('.mobile-menu').classList.remove('open');openSignupModal()">Join Network</a>
 </div>
 
 <!-- ── HERO ─────────────────────────────────────────────── -->
@@ -968,7 +967,7 @@
         Chicago CM brings together the city's top commercial construction professionals — from general contractors and architects to owners and subcontractors — to network, collaborate, and grow.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Join the Network</a>
+        <a href="#" class="btn btn-primary" onclick="event.preventDefault();openSignupModal()">Join the Network</a>
         <a href="#events"  class="btn btn-outline">Upcoming Events</a>
       </div>
       <div class="hero-stats">
@@ -1007,7 +1006,7 @@
           alt="Chicago construction professionals networking"
         />
         <div class="about-badge">
-          <div class="about-badge-num">Est.<br/>2014</div>
+          <div class="about-badge-num">Est.<br/>2026</div>
           <div class="about-badge-text">Chicago CM</div>
         </div>
       </div>
@@ -1208,13 +1207,6 @@
       </div>
       <button class="btn btn-primary" id="boardCTABtn" onclick="openSignupModal()">Sign Up Free to Access</button>
     </div>
-    <div class="board-filters">
-      <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
-      <button class="filter-btn" onclick="filterPosts('referral', this)">Referral Needed</button>
-      <button class="filter-btn" onclick="filterPosts('sub', this)">Subcontractor Needed</button>
-      <button class="filter-btn" onclick="filterPosts('looking', this)">Looking for Work</button>
-      <button class="filter-btn" onclick="filterPosts('other', this)">Other</button>
-    </div>
     <div class="board-grid" id="boardGrid">
       <!-- Posts injected by JS -->
       <div class="board-lock-overlay" id="boardLock">
@@ -1329,15 +1321,12 @@
 <!-- ── CTA ─────────────────────────────────────────────── -->
 <section class="cta-section" id="join">
   <div class="container">
-    <div class="cta-inner">
+    <div class="cta-inner" style="justify-content:center; text-align:center; flex-direction:column; align-items:center; gap:28px;">
       <div class="cta-text">
         <h2>Ready to Expand Your<br/>Network in Chicago?</h2>
-        <p>Drop your email and we'll reach out with membership details.</p>
+        <p style="margin-top:12px;">Membership is free. Sign up today and start connecting with Chicago's commercial construction community.</p>
       </div>
-      <div class="cta-form">
-        <input class="cta-input" type="email" placeholder="Enter your work email" />
-        <button class="btn btn-white" onclick="handleEmailSignup(this)">Get Started</button>
-      </div>
+      <button class="btn btn-white" style="font-size:16px; padding:16px 40px;" onclick="openSignupModal()">Sign Up Today — It's Free</button>
     </div>
   </div>
 </section>
@@ -1375,7 +1364,7 @@
         </div>
       </div>
       <div class="contact-form">
-        <h3 style="font-size:22px; font-weight:800; margin-bottom:28px; letter-spacing:-.02em;">Request Membership Info</h3>
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:28px; letter-spacing:-.02em;">Request Sponsorship Info</h3>
         <div class="form-cols">
           <div class="form-row">
             <label>First Name</label>
@@ -1440,7 +1429,7 @@
           <li><a href="#members">Who We Serve</a></li>
           <li><a href="#benefits">Membership Benefits</a></li>
           <li><a href="#events">Events</a></li>
-          <li><a href="#contact">Join the Network</a></li>
+          <li><a href="#" onclick="event.preventDefault();openSignupModal()">Join the Network</a></li>
         </ul>
       </div>
       <div>
@@ -1544,14 +1533,12 @@
   function renderBoard() {
     const grid = document.getElementById('boardGrid');
     const lock = document.getElementById('boardLock');
-    const filtered = currentFilter === 'all' ? allPosts : allPosts.filter(p => p.type === currentFilter);
 
-    grid.querySelectorAll('.post-card').forEach(c => c.remove());
+    grid.querySelectorAll('.post-card, .board-empty').forEach(c => c.remove());
 
-    filtered.forEach((post, i) => {
+    allPosts.forEach((post, i) => {
       const card = document.createElement('div');
-      card.className = 'post-card' + (!currentUser && i >= 2 ? ' blurred' : '');
-      card.dataset.type = post.type;
+      card.className = 'post-card' + (!currentUser && i >= 3 ? ' blurred' : '');
       const badgeClass = { referral:'badge-referral', sub:'badge-sub', looking:'badge-looking', other:'badge-other' }[post.type] || 'badge-other';
       const badgeLabel = { referral:'Referral', sub:'Subcontractor', looking:'Looking for Work', other:'Other' }[post.type] || 'Other';
       const safeTitle = (post.title||'').replace(/'/g,"\\'");
@@ -1573,17 +1560,17 @@
       grid.insertBefore(card, lock);
     });
 
-    if (filtered.length === 0) {
+    if (allPosts.length === 0) {
       const empty = document.createElement('div');
-      empty.style.cssText = 'grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);font-size:15px;';
-      empty.textContent = 'No posts in this category yet. Be the first to post!';
+      empty.className = 'board-empty';
+      empty.style.cssText = 'text-align:center;padding:48px;color:var(--gray);font-size:15px;border-top:1px solid var(--border);';
+      empty.textContent = 'No posts yet. Be the first to post!';
       grid.insertBefore(empty, lock);
     }
     lock.style.display = currentUser ? 'none' : 'flex';
   }
 
   function filterPosts(type, btn) {
-    currentFilter = type;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderBoard();
@@ -1622,16 +1609,33 @@
     if (existing) {
       err.textContent = 'An account with this email already exists. Please log in.'; err.style.display = 'block'; return;
     }
+    // Check if company email or free email
+    const FREE_DOMAINS = ['gmail.com','yahoo.com','yahoo.co','hotmail.com','outlook.com','aol.com','icloud.com','me.com','mail.com','protonmail.com','proton.me','live.com','msn.com','ymail.com','comcast.net','att.net','sbcglobal.net','verizon.net','cox.net','charter.net'];
+    const emailDomain = email.split('@')[1].toLowerCase();
+    const isCompanyEmail = !FREE_DOMAINS.includes(emailDomain);
+
     // Count members to pick avatar color
     const { count } = await sb.from('members').select('*', { count:'exact', head:true });
     const color = AVATAR_COLORS[(count || 0) % AVATAR_COLORS.length];
     const initials = (first[0] + last[0]).toUpperCase();
-    const { error } = await sb.from('members').insert({ first, last, email, company, role, initials, color, approved: false });
+    const approved = isCompanyEmail;
+    const { error } = await sb.from('members').insert({ first, last, email, company, role, initials, color, approved });
     if (error) { err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block'; return; }
     closeModal('signupModal');
-    // Show pending approval message
-    document.getElementById('signupModal').classList.remove('open');
-    showPendingModal(first);
+
+    if (approved) {
+      // Company email — auto-approved, log them in immediately
+      const user = { first, last, email, company, role, initials, color, approved: true };
+      sessionStorage.setItem('ccm_user', JSON.stringify(user));
+      currentUser = user;
+      showMemberState();
+      await loadPosts();
+      document.getElementById('board').scrollIntoView({ behavior:'smooth' });
+      showToast('Welcome to Chicago CM, ' + first + '!', '#065f46');
+    } else {
+      // Free email — needs manual review
+      showPendingModal(first);
+    }
   }
 
   function showPendingModal(name) {
@@ -1639,9 +1643,9 @@
     overlay.className = 'modal-overlay open';
     overlay.innerHTML = `
       <div class="modal" style="text-align:center;">
-        
         <h3>You're on the list, ${name||''}!</h3>
-        <p class="modal-sub" style="margin-bottom:24px;">Your request has been submitted. A Chicago CM admin will review and approve your account shortly. You'll be able to log in once approved.</p>
+        <p class="modal-sub" style="margin-bottom:24px;">Thanks for signing up. Since you used a personal email, a Chicago CM admin will review and approve your account shortly. You'll be able to log in once approved.</p>
+        <p style="font-size:13px;color:var(--gray);margin-bottom:24px;">Tip: Sign up with your company email for instant access.</p>
         <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="this.closest('.modal-overlay').remove()">Got It</button>
       </div>`;
     document.body.appendChild(overlay);
