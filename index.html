@@ -1309,6 +1309,10 @@
         <option>Other</option>
       </select>
     </div>
+    <div class="form-cols">
+      <div class="form-row"><label>Password</label><input type="password" id="su-password" placeholder="Min. 8 characters" /></div>
+      <div class="form-row"><label>Confirm Password</label><input type="password" id="su-password2" placeholder="Repeat password" /></div>
+    </div>
     <div id="su-error" style="color:var(--chi-red);font-size:13px;margin-bottom:12px;display:none;"></div>
     <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleSignup()">Create Free Account</button>
     <p style="text-align:center;font-size:13px;color:var(--gray);margin-top:16px;">Already a member? <a href="#" onclick="closeModal('signupModal');openLoginModal();" style="color:var(--chi-red);font-weight:700;">Log In</a></p>
@@ -1320,8 +1324,9 @@
   <div class="modal">
     <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
     <h3>Welcome Back</h3>
-    <p class="modal-sub">Log in with your email to access the member board.</p>
+    <p class="modal-sub">Log in with your email and password to access the member board.</p>
     <div class="form-row"><label>Work Email</label><input type="email" id="li-email" placeholder="jane@yourfirm.com" /></div>
+    <div class="form-row"><label>Password</label><input type="password" id="li-password" placeholder="Your password" /></div>
     <div id="li-error" style="color:var(--chi-red);font-size:13px;margin-bottom:12px;display:none;"></div>
     <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleLogin()">Log In</button>
     <p style="text-align:center;font-size:13px;color:var(--gray);margin-top:12px;"><a href="#" onclick="openForgotModal()" style="color:var(--chi-red);font-weight:700;">Forgot Password?</a></p>
@@ -1395,19 +1400,6 @@
   </div>
 </div>
 
-<!-- ── PARTNERS ────────────────────────────────────────── -->
-<section class="partners">
-  <div class="container">
-    <p class="partners-label">Network Sponsors &amp; Partners</p>
-    <div class="partners-logos">
-      <div class="partner-placeholder">Your Company Here</div>
-      <div class="partner-placeholder">Sponsor Slot</div>
-      <div class="partner-placeholder">Partner Firm</div>
-      <div class="partner-placeholder">Supporting Sponsor</div>
-      <div class="partner-placeholder">Industry Partner</div>
-    </div>
-  </div>
-</section>
 
 <!-- ── CTA ─────────────────────────────────────────────── -->
 <section class="cta-section" id="join">
@@ -1718,15 +1710,23 @@
   function closeModal(id)    { document.getElementById(id).classList.remove('open'); }
 
   async function handleSignup() {
-    const first   = document.getElementById('su-first').value.trim();
-    const last    = document.getElementById('su-last').value.trim();
-    const email   = document.getElementById('su-email').value.trim();
-    const company = document.getElementById('su-company').value.trim();
-    const role    = document.getElementById('su-role').value;
-    const err     = document.getElementById('su-error');
+    const first     = document.getElementById('su-first').value.trim();
+    const last      = document.getElementById('su-last').value.trim();
+    const email     = document.getElementById('su-email').value.trim();
+    const company   = document.getElementById('su-company').value.trim();
+    const role      = document.getElementById('su-role').value;
+    const password  = document.getElementById('su-password').value;
+    const password2 = document.getElementById('su-password2').value;
+    const err       = document.getElementById('su-error');
     err.style.display = 'none';
-    if (!first || !last || !email || !company || !role) {
+    if (!first || !last || !email || !company || !role || !password) {
       err.textContent = 'Please fill in all fields.'; err.style.display = 'block'; return;
+    }
+    if (password.length < 8) {
+      err.textContent = 'Password must be at least 8 characters.'; err.style.display = 'block'; return;
+    }
+    if (password !== password2) {
+      err.textContent = 'Passwords do not match.'; err.style.display = 'block'; return;
     }
     if (!email.includes('@')) {
       err.textContent = 'Please enter a valid email.'; err.style.display = 'block'; return;
@@ -1746,7 +1746,7 @@
     const color = AVATAR_COLORS[(count || 0) % AVATAR_COLORS.length];
     const initials = (first[0] + last[0]).toUpperCase();
     const approved = isCompanyEmail;
-    const { error } = await sb.from('members').insert({ first, last, email, company, role, initials, color, approved });
+    const { error } = await sb.from('members').insert({ first, last, email, company, role, initials, color, approved, password });
     if (error) { err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block'; return; }
 
     // Send admin notification email
@@ -1790,12 +1790,19 @@
   }
 
   async function handleLogin() {
-    const email = document.getElementById('li-email').value.trim();
-    const err   = document.getElementById('li-error');
+    const email    = document.getElementById('li-email').value.trim();
+    const password = document.getElementById('li-password').value;
+    const err      = document.getElementById('li-error');
     err.style.display = 'none';
+    if (!email || !password) {
+      err.textContent = 'Please enter your email and password.'; err.style.display = 'block'; return;
+    }
     const { data: user } = await sb.from('members').select('*').eq('email', email).maybeSingle();
     if (!user) {
       err.textContent = 'No account found with that email. Please sign up.'; err.style.display = 'block'; return;
+    }
+    if (user.password && user.password !== password) {
+      err.textContent = 'Incorrect password. Try again or use Forgot Password.'; err.style.display = 'block'; return;
     }
     if (!user.approved) {
       err.style.display = 'none';
